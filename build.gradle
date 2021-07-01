@@ -42,9 +42,10 @@ subprojects {
 
 project(':client') {
 	dependencies {
-		implementation 'org.springframework.boot:spring-boot-starter-webflux'
+		implementation 'org.springframework.boot:spring-boot-starter-webflux'   // 이벤트 루프 기반 비동기 논 블로킹
 		implementation 'org.springframework.boot:spring-boot-starter-aop'       // Resilience4j의 어노테이션 방식을 사용하기 위해 필요
 		implementation "io.github.resilience4j:resilience4j-spring-boot2:1.7.0" // Resilience4j
 		implementation 'io.github.resilience4j:resilience4j-reactor:1.7.0'      // Reactive 환경에서 Resilience4j를 사용 하기 위해 필요
+		implementation 'org.apache.httpcomponents:httpclient' // HTTP 요청을 보내는 세션의 역할을 하는 HttpClient 클래스 사용을 위해 필요
 	}
 }
