@@ -44,6 +44,20 @@ public class RestTemplateService {
         return result.getBody();
     }
 
+    public String getForEntityFail(int id) {
+        URI uri = UriComponentsBuilder
+                .fromUriString(SERVER_DOMAIN_AND_PORT)
+                .path("/api/server/hello/" + id)
+                .encode()
+                .build()
+                .toUri();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        ResponseEntity<String> result = restTemplate.getForEntity(uri, String.class);
+        return result.getBody();
+    }
+
     public void getEntity(){
         URI uri = UriComponentsBuilder
                 .fromUriString(SERVER_DOMAIN_AND_PORT)

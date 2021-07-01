@@ -21,6 +21,13 @@ public class WebClientService {
                 .bodyToMono(String.class);
     }
 
+    public Mono<String> getStringFail(int id) {
+        return webClient.get()
+                .uri("/api/server/hello/" + id)
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+
     public Flux<String> getStringList() {
         return webClient.get()
                 .uri("/api/server/helloList")

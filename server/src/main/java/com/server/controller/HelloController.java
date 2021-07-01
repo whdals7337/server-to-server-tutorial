@@ -1,6 +1,7 @@
 package com.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,14 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String hello() {
+        return "Hello Server";
+    }
+
+    @GetMapping("/hello/{id}")
+    public String hello(@PathVariable(name = "id") int id) {
+        if(id < 10) {
+            throw new RuntimeException();
+        }
         return "Hello Server";
     }
 

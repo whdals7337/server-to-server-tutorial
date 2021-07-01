@@ -1,2 +1,16 @@
 server:
   port: 9090
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10  # Circuit Breaker가 에러 비율 또 slow call 비율을 계산하기 전에 요구되는 최소한의 요청 수
+        failureRateThreshold: 80 # 에러 비율 (퍼센트)로 해당 값 이상으로 에러 발생시 서킷이 Open
+        waitDurationInOpenState: 10s # 서킷의 상태가 Open에서 Half-open으로 변경되기 전에 Circuit Breaker가 기다리는 시간
+
+    instances:
+      restTemplate:
+        baseConfig: default
+      webClient:
+        baseConfig: default
